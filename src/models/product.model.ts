@@ -1,6 +1,6 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
-import { Product } from '../interfaces/product';
+import { Product, Order } from '../interfaces/product';
 
 const registerProduct = async (product: Product): Promise<Product> => {
   const { name, amount } = product;
@@ -11,6 +11,13 @@ const registerProduct = async (product: Product): Promise<Product> => {
   return { id: insertId, ...product };
 };
 
+const getAll = async (): Promise<Order[]> => {
+  const query = 'SELECT * FROM Trybesmith.products';
+  const [result] = await connection.execute<RowDataPacket[] & Order[]>(query);
+  return result;
+};
+
 export default { 
   registerProduct,
+  getAll,
 };
