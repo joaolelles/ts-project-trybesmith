@@ -10,8 +10,6 @@ const registerUser = async (user: User) => {
   );
 };
 
-// comentário
-
 export default { 
   registerUser,
 };

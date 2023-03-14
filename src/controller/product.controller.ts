@@ -6,7 +6,7 @@ const registerProduct = async (req: Request, res: Response) => {
   return res.status(201).json(newProduct);
 };
 
-const getAll = async (req: Request, res: Response) => {
+const getAll = async (_req: Request, res: Response) => {
   const allProducts = await productService.getAll();
   return res.status(200).json(allProducts);
 };
