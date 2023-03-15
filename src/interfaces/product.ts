@@ -4,6 +4,6 @@ export interface Product {
   amount: string;
 }
 
-export interface Order extends Product{
+export interface OrderP extends Product{
   orderId?: number;
 }
