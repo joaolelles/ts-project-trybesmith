@@ -7,6 +7,6 @@ const { validateName, validateAmount } = validateProduct;
 const router = Router();
 
 router.post('/', validateName, validateAmount, productController.registerProduct);
-router.get('/', validateName, validateAmount, productController.getAll);
+router.get('/', productController.getAll);
 
 export default router;
