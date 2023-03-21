@@ -17,7 +17,12 @@ const getAll = async (): Promise<OrderP[]> => {
   return result;
 };
 
+const updateOrderId = async (order:number, e:number) => {
+  await connection.execute('UPDATE Trybesmith.products SET order_id= ?  WHERE id = ?', [order, e]);
+};
+
 export default { 
   registerProduct,
   getAll,
+  updateOrderId,
 };

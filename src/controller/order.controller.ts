@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import orderService from '../services/order.service';
+import userService from '../services/user.service';
 
 const getAll = async (_req: Request, res: Response) => {
   const allOrder = await orderService.getAll();
@@ -7,12 +8,15 @@ const getAll = async (_req: Request, res: Response) => {
 };
 
 const registerOrder = async (req: Request, res: Response) => {
-  const { payload } = req.body.user;
-  // const order = await orderService.registerOrder(req.body);
-  const userId = payload.id;
-  console.log(userId);
-  
-  return res.status(201).json({ userId });
+  const { productsIds } = req.body;
+  const { user } = req.body;
+  const userName = await userService.getId(user.username);
+  const result = {
+    userId: userName.id,
+    productsIds,
+  };
+  await orderService.registerOrder(userName.id, productsIds);
+  return res.status(201).json(result);
 };
 
 export default {

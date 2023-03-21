@@ -17,6 +17,12 @@ const registerUser = async (user: User): Promise<string> => {
   return token;
 };
 
+const getId = async (user: string) => {
+  const [[id]] = await userModel.getId(user);
+  return id;
+};
+
 export default {
   registerUser,
+  getId,
 };

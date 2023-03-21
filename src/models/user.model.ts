@@ -1,4 +1,4 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
 import { User } from '../interfaces/users';
 
@@ -10,6 +10,15 @@ const registerUser = async (user: User) => {
   );
 };
 
+const getId = async (user: string) => {
+  const userId = await connection.execute<RowDataPacket[]>(
+    'SELECT id FROM Trybesmith.users WHERE username = ?',
+    [user],
+  );
+  return userId;
+};
+
 export default { 
   registerUser,
+  getId,
 };
