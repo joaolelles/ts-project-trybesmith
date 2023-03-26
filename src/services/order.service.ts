@@ -7,7 +7,7 @@ const getAll = async (): Promise<Order[]> => {
   return result;
 };
 
-const registerOrder = async (productsIds: number[], userId: number) => {
+const registerOrder = async (userId: number, productsIds: number[]) => {
   const orderId = await orderModel.registerOrder(userId);
   productsIds.forEach((e) => productModel.updateOrderId(orderId, e));
 };

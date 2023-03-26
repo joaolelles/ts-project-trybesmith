@@ -15,8 +15,7 @@ const registerOrder = async (userId: number) => {
   const result = await connection.execute<ResultSetHeader>(`
   INSERT INTO Trybesmith.orders (user_id) 
   VALUES (?)`, [userId]);
-  const [dataInserted] = result;
-  const { insertId } = dataInserted;
+  const [{ insertId }] = result;
   return insertId;
 };
 
